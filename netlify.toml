@@ -1,0 +1,14 @@
+# Static site — no build step; publish the repository root.
+[build]
+  publish = "."
+
+# Baseline security headers on every response.
+# (Netlify provisions and renews the HTTPS certificate automatically.)
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
