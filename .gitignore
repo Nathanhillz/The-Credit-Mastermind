@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor / tooling
+*.log
+.vscode/
+.idea/
+node_modules/
+
+# Local scratch (dev probes)
+__probe.html
+__*.html
+
+# Env / secrets
+.env
+.env.*
+
+# Held back until domain DNS points at GitHub Pages (force-add later)
+CNAME
