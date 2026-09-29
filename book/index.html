@@ -170,7 +170,11 @@
           </ul>
         </div>
 
-        <form class="form reveal" data-delay="1" id="contactForm" novalidate>
+        <form class="form reveal" data-delay="1" id="contactForm" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="booking" />
+          <p aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;">
+            <label>Leave this field empty <input type="text" name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           <div class="field">
             <label for="name">Your name</label>
             <input type="text" id="name" name="name" autocomplete="name" required />

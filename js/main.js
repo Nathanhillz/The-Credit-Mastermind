@@ -377,16 +377,32 @@
       btn.disabled = true;
       btn.textContent = "Sending…";
 
-      // Demo only — connect this to your form handler, email service,
-      // or a booking tool (Calendly, Acuity, etc.) before launch.
-      setTimeout(() => {
-        form.reset();
-        btn.disabled = false;
-        btn.textContent = "Book a Free Consultation";
-        status.textContent = "Thank you — we'll be in touch within one business day.";
-        status.classList.add("is-visible");
-        setTimeout(() => status.classList.remove("is-visible"), 7000);
-      }, 1100);
+      // Submit to Netlify Forms. The endpoint is the site root ("/");
+      // form-name in the payload tells Netlify which form this is.
+      const body = new URLSearchParams();
+      new FormData(form).forEach((value, key) => body.append(key, value));
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          form.reset();
+          status.textContent = "Thank you — we'll be in touch within one business day.";
+          status.classList.add("is-visible");
+          setTimeout(() => status.classList.remove("is-visible"), 7000);
+        })
+        .catch(() => {
+          status.textContent =
+            "We couldn't send that just now. Please try again, or email hello@creditmastermind.com and we'll reply within one business day.";
+          status.classList.add("is-visible");
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.textContent = "Book a Free Consultation";
+        });
     });
   }
 
