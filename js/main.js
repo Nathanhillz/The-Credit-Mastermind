@@ -396,7 +396,7 @@
         })
         .catch(() => {
           status.textContent =
-            "We couldn't send that just now. Please try again, or email hello@creditmastermind.com and we'll reply within one business day.";
+            "We couldn't send that just now. Please try again, or email hello@thecreditmastermind.com and we'll reply within one business day.";
           status.classList.add("is-visible");
         })
         .finally(() => {
